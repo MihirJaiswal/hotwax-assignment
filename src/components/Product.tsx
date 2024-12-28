@@ -87,7 +87,7 @@ export default function Products() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl mx-auto">
+    <div className="container px-4 py-8 max-w-7xl mx-auto">
       <h1 className="text-3xl font-bold mb-8 text-center">Products</h1>
       <div className="mb-6 flex flex-wrap items-center gap-4 justify-center">
         <Select
