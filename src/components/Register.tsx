@@ -43,6 +43,12 @@ export default function Register() {
       return
     }
 
+    if (email.endsWith('@example.com')) {
+      setError('Email cannot end with @example.com')
+      return
+    }
+
+
     const users = JSON.parse(localStorage.getItem('users') || '[]')
     if (users.find((user: { email: string }) => user.email === email)) {
       setError('Email already exists')

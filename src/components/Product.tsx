@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Loader } from './Loader'
 import { useToast } from '@/hooks/use-toast'
+import { useRouter } from 'next/navigation'
 
 interface Product {
   id: number
@@ -23,9 +24,10 @@ export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false) // State for login status
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
   const { toast } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -47,7 +49,7 @@ export default function Products() {
 
     // Check user login state
     const user = localStorage.getItem('currentUser')
-    setIsLoggedIn(!!user) // Set login status based on presence of user data
+    setIsLoggedIn(!!user)
   }, [])
 
   useEffect(() => {
@@ -71,11 +73,15 @@ export default function Products() {
 
     localStorage.setItem('cart', JSON.stringify(cart))
 
-    // Using the toast function correctly
     toast({
       title: 'Product added to cart!',
       description: `${product.title} has been added to your cart.`,
     })
+  }
+
+  const goToDetails = (id: number) => {
+    router.push(`/products/${id}`)
+    console.log(id)
   }
 
   if (loading) {
@@ -87,8 +93,8 @@ export default function Products() {
   }
 
   return (
-    <div className="container px-4 py-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-center">Products</h1>
+    <div className="container px-4 py-8 max-w-7xl mx-auto mt-6">
+      <h1 className="text-3xl font-bold mb-4 text-center">Products</h1>
       <div className="mb-6 flex flex-wrap items-center gap-4 justify-center">
         <Select
           onValueChange={(value) => setSelectedCategory(value === 'all' ? '' : value)}
@@ -119,12 +125,8 @@ export default function Products() {
         {filteredProducts.map((product) => (
           <Card key={product.id} className="flex flex-col h-full">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">
-                {product.title}
-              </CardTitle>
-              <CardDescription className="text-gray-600">
-                {product.category}
-              </CardDescription>
+              <CardTitle className="text-lg font-semibold">{product.title}</CardTitle>
+              <CardDescription className="text-gray-600">{product.category}</CardDescription>
             </CardHeader>
             <CardContent className="flex-grow flex justify-center">
               <Image
@@ -132,23 +134,28 @@ export default function Products() {
                 alt={product.title}
                 width={200}
                 height={200}
-                loading='lazy'
+                loading="lazy"
                 className="w-full h-48 object-contain"
               />
             </CardContent>
             <CardFooter className="flex flex-col gap-2 mt-auto">
-              <p className="text-indigo-600 font-bold text-lg text-center">
-                ${product.price.toFixed(2)}
-              </p>
+              <p className="text-indigo-600 font-bold text-lg text-center">${product.price.toFixed(2)}</p>
 
-              {/* Show Add to Cart button only if user is logged in */}
               {isLoggedIn && (
-                <Button
-                  onClick={() => addToCart(product)}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white w-full"
-                >
-                  Add to Cart
-                </Button>
+                <>
+                  <Button
+                    onClick={() => addToCart(product)}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white w-full"
+                  >
+                    Add to Cart
+                  </Button>
+                  <Button
+                    onClick={() => goToDetails(product.id)}
+                    className="bg-gray-600 hover:bg-gray-700 text-white w-full mt-2"
+                  >
+                    Details
+                  </Button>
+                </>
               )}
             </CardFooter>
           </Card>
