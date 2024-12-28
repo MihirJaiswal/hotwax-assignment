@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState, useEffect } from 'react';
 import {
   Sheet,
@@ -7,7 +6,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MenuIcon, X, Moon, Sun, ShoppingCart } from "lucide-react";
+import { MenuIcon, Moon, Sun, ShoppingCart } from "lucide-react";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';

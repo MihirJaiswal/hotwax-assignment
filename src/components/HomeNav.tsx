@@ -46,9 +46,9 @@ function HomeNav() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-black shadow-md">
       <div className="container mx-auto flex justify-between items-center px-6 py-4 lg:px-8">
         {/* Logo */}
-        <a href="/" className="text-2xl font-bold text-gray-900 dark:text-white hover:text-cyan-400 tracking-wide transition">
-          Mihir's Ecommerce
-        </a>
+        <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white hover:text-cyan-400 tracking-wide transition">
+          Mihir Ecommerce
+        </Link>
 
         {/* Theme Toggle */}
         <button

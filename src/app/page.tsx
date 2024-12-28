@@ -1,7 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import HomeHeader from '@/components/HomeHeader';
-import { FeatureCard } from '@/components/FeatureCard';
 import Footer from '@/components/Footer';
 
 export default function Home() {

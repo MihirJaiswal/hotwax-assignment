@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -115,7 +114,7 @@ export default function Login() {
             Forgot your password?
           </Link>
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            Don't have an account?{' '}
+            Dont have an account?{' '}
             <Link 
               href="/register" 
               className="text-blue-600 hover:underline dark:text-blue-400"

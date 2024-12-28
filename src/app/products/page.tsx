@@ -1,6 +1,5 @@
 import Navbar from '@/components/HomeHeader'
 import Products from '@/components/Product'
-import React from 'react'
 
 export default function page() {
   return (
