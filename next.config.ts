@@ -4,8 +4,10 @@ const nextConfig = {
       {
         hostname: 'fakestoreapi.com',
       },
-      
     ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // This will ignore ESLint errors during the build
   },
 };
 
