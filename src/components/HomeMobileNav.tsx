@@ -37,7 +37,7 @@ function HomeMobileNav() {
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    localStorage.removeItem("cart")
+   
     setIsLoggedIn(false);
     router.push("/login");
   };

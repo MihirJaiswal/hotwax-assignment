@@ -32,6 +32,7 @@ function HomeNav() {
     localStorage.removeItem("currentUser");
     setIsLoggedIn(false);
     router.push("/login");
+    localStorage.removeItem("cart");
   };
 
   const toggleNavigation = () => {
