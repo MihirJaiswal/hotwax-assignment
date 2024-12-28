@@ -132,6 +132,7 @@ export default function Products() {
                 alt={product.title}
                 width={200}
                 height={200}
+                loading='lazy'
                 className="w-full h-48 object-contain"
               />
             </CardContent>
