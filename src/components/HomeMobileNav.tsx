@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import {
   Sheet,
@@ -11,12 +11,11 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { navigation } from '../../constant';
-import { DialogTitle } from '@radix-ui/react-dialog'
+import { DialogTitle } from '@radix-ui/react-dialog';
 
 function HomeMobileNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const [openNavigation, setOpenNavigation] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -38,11 +37,10 @@ function HomeMobileNav() {
 
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("cart")
     setIsLoggedIn(false);
     router.push("/login");
   };
-
-  const closeNavigation = () => setOpenNavigation(false);
 
   return (
     <section className="w-full max-w-[264px] z-50">
@@ -51,14 +49,14 @@ function HomeMobileNav() {
           <SheetTrigger asChild>
             <MenuIcon
               size={36}
-              className="cursor-pointer sm:hidden text-white hover:text-cyan-400 transition"
+              className="cursor-pointer sm:hidden text-cyan-500 hover:text-cyan-400 transition"
             />
           </SheetTrigger>
           <SheetContent
             side="right"
             className="bg-black bg-opacity-90 backdrop-blur-md border-gray-700 shadow-lg"
           >
-             <DialogTitle className="sr-only">Menu</DialogTitle> 
+            <DialogTitle className="sr-only">Menu</DialogTitle> 
             <Link href="/" className="flex items-center gap-2">
               <p className="text-[24px] font-bold text-white px-2 mt-2">
                 Mihir Ecommerce
@@ -77,7 +75,7 @@ function HomeMobileNav() {
                         <SheetClose asChild key={item.route}>
                           <Link
                             href={item.route}
-                            onClick={closeNavigation}
+                            onClick={() => {}}
                             className={cn(
                               "flex gap-4 items-center p-4 rounded-lg w-full max-w-60 transition hover:bg-cyan-500",
                               { 'bg-cyan-600': isActive }
